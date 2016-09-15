@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.jkamcc.musicbrainz">
+    <author>Juan Carrillo</author>
+    <namespace>MusicBrainz</namespace>
+
+    <entity name="Artist" table="artist" local-service="true" remote-service="false">
+
+        <!-- PK fields -->
+        <column name="id" type="Integer" db-name="id" primary="true"/>
+
+        <!-- Other fields -->
+        <column name="name" type="String" db-name="name" />
+
+    </entity>
+
+    <exceptions>
+    </exceptions>
+
+</service-builder>
