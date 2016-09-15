@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+>
+
+    <!--MusicBrainz database connection-->
+
+    <bean id="basePersistence" abstract="true">
+        <property name="dataSource" ref="musicBrainzDataSource" />
+        <property name="sessionFactory" ref="musicBrainzHibernateSessionFactory" />
+    </bean>
+
+    <bean id="musicBrainzDataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name="targetDataSource">
+            <bean class="com.liferay.portal.dao.jdbc.spring.DataSourceFactoryBean">
+                <property name="propertyPrefix" value="jdbc.music.brainz." />
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="musicBrainzHibernateSessionFactory" class="com.liferay.portal.spring.hibernate.PortletHibernateConfiguration">
+        <property name="dataSource" ref="musicBrainzDataSource" />
+    </bean>
+
+    <bean id="musicBrainzSessionFactory" class="com.liferay.portal.dao.orm.hibernate.PortletSessionFactoryImpl">
+        <property name="dataSource" ref="musicBrainzDataSource" />
+        <property name="sessionFactoryClassLoader" ref="portletClassLoader" />
+        <property name="sessionFactoryImplementor" ref="musicBrainzHibernateSessionFactory" />
+    </bean>
+
+    <bean id="musicBrainzTransactionManager" class="com.liferay.portal.spring.transaction.TransactionManagerFactory" factory-method="createTransactionManager">
+        <constructor-arg ref="musicBrainzDataSource" />
+        <constructor-arg ref="musicBrainzHibernateSessionFactory" />
+    </bean>
+
+</beans>

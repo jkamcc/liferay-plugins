@@ -5,7 +5,8 @@
     <author>Juan Carrillo</author>
     <namespace>MusicBrainz</namespace>
 
-    <entity name="Artist" table="artist" local-service="true" remote-service="false">
+    <entity name="Artist" table="artist" local-service="true" remote-service="false"
+            data-source="musicBrainzDataSource" tx-manager="musicBrainzTransactionManager" session-factory="musicBrainzSessionFactory">
 
         <!-- PK fields -->
         <column name="id" type="Integer" db-name="id" primary="true"/>
