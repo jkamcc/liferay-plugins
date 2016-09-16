@@ -30,6 +30,7 @@ public class ArtistSoap implements Serializable {
 		ArtistSoap soapModel = new ArtistSoap();
 
 		soapModel.setId(model.getId());
+		soapModel.setGid(model.getGid());
 		soapModel.setName(model.getName());
 
 		return soapModel;
@@ -75,20 +76,28 @@ public class ArtistSoap implements Serializable {
 	public ArtistSoap() {
 	}
 
-	public Integer getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _id;
 	}
 
-	public void setPrimaryKey(Integer pk) {
+	public void setPrimaryKey(long pk) {
 		setId(pk);
 	}
 
-	public Integer getId() {
+	public long getId() {
 		return _id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		_id = id;
+	}
+
+	public String getGid() {
+		return _gid;
+	}
+
+	public void setGid(String gid) {
+		_gid = gid;
 	}
 
 	public String getName() {
@@ -99,6 +108,7 @@ public class ArtistSoap implements Serializable {
 		_name = name;
 	}
 
-	private Integer _id;
+	private long _id;
+	private String _gid;
 	private String _name;
 }

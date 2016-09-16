@@ -32,11 +32,11 @@ public class ArtistLocalServiceClp implements ArtistLocalService {
 
 		_methodName1 = "createArtist";
 
-		_methodParameterTypes1 = new String[] { "java.lang.Integer" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteArtist";
 
-		_methodParameterTypes2 = new String[] { "java.lang.Integer" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteArtist";
 
@@ -82,11 +82,11 @@ public class ArtistLocalServiceClp implements ArtistLocalService {
 
 		_methodName10 = "fetchArtist";
 
-		_methodParameterTypes10 = new String[] { "java.lang.Integer" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getArtist";
 
-		_methodParameterTypes11 = new String[] { "java.lang.Integer" };
+		_methodParameterTypes11 = new String[] { "long" };
 
 		_methodName12 = "getPersistedModel";
 
@@ -146,14 +146,12 @@ public class ArtistLocalServiceClp implements ArtistLocalService {
 	}
 
 	@Override
-	public com.jkamcc.musicbrainz.model.Artist createArtist(
-		java.lang.Integer id) {
+	public com.jkamcc.musicbrainz.model.Artist createArtist(long id) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1,
-					new Object[] { ClpSerializer.translateInput(id) });
+					_methodParameterTypes1, new Object[] { id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -171,16 +169,14 @@ public class ArtistLocalServiceClp implements ArtistLocalService {
 	}
 
 	@Override
-	public com.jkamcc.musicbrainz.model.Artist deleteArtist(
-		java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist deleteArtist(long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2,
-					new Object[] { ClpSerializer.translateInput(id) });
+					_methodParameterTypes2, new Object[] { id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -433,14 +429,13 @@ public class ArtistLocalServiceClp implements ArtistLocalService {
 	}
 
 	@Override
-	public com.jkamcc.musicbrainz.model.Artist fetchArtist(java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist fetchArtist(long id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
-					new Object[] { ClpSerializer.translateInput(id) });
+					_methodParameterTypes10, new Object[] { id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -462,15 +457,14 @@ public class ArtistLocalServiceClp implements ArtistLocalService {
 	}
 
 	@Override
-	public com.jkamcc.musicbrainz.model.Artist getArtist(java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist getArtist(long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11,
-					new Object[] { ClpSerializer.translateInput(id) });
+					_methodParameterTypes11, new Object[] { id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

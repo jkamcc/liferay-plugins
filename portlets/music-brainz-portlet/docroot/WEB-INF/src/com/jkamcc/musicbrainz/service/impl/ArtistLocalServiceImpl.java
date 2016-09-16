@@ -14,7 +14,11 @@
 
 package com.jkamcc.musicbrainz.service.impl;
 
+import com.jkamcc.musicbrainz.model.Artist;
+import com.jkamcc.musicbrainz.model.ArtistMeta;
 import com.jkamcc.musicbrainz.service.base.ArtistLocalServiceBaseImpl;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the artist local service.
@@ -36,4 +40,5 @@ public class ArtistLocalServiceImpl extends ArtistLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link com.jkamcc.musicbrainz.service.ArtistLocalServiceUtil} to access the artist local service.
 	 */
+
 }

@@ -15,6 +15,7 @@
 package com.jkamcc.musicbrainz.service;
 
 import com.jkamcc.musicbrainz.model.ArtistClp;
+import com.jkamcc.musicbrainz.model.ArtistMetaClp;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -106,6 +107,10 @@ public class ClpSerializer {
 			return translateInputArtist(oldModel);
 		}
 
+		if (oldModelClassName.equals(ArtistMetaClp.class.getName())) {
+			return translateInputArtistMeta(oldModel);
+		}
+
 		return oldModel;
 	}
 
@@ -125,6 +130,16 @@ public class ClpSerializer {
 		ArtistClp oldClpModel = (ArtistClp)oldModel;
 
 		BaseModel<?> newModel = oldClpModel.getArtistRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputArtistMeta(BaseModel<?> oldModel) {
+		ArtistMetaClp oldClpModel = (ArtistMetaClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getArtistMetaRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -151,6 +166,43 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.jkamcc.musicbrainz.model.impl.ArtistImpl")) {
 			return translateOutputArtist(oldModel);
+		}
+		else if (oldModelClassName.endsWith("Clp")) {
+			try {
+				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+				Method getClpSerializerClassMethod = oldModelClass.getMethod(
+						"getClpSerializerClass");
+
+				Class<?> oldClpSerializerClass = (Class<?>)getClpSerializerClassMethod.invoke(oldModel);
+
+				Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+						BaseModel.class);
+
+				Class<?> oldModelModelClass = oldModel.getModelClass();
+
+				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+						oldModelModelClass.getSimpleName() + "RemoteModel");
+
+				Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+				BaseModel<?> newModel = (BaseModel<?>)translateOutputMethod.invoke(null,
+						oldRemoteModel);
+
+				return newModel;
+			}
+			catch (Throwable t) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Unable to translate " + oldModelClassName, t);
+				}
+			}
+		}
+
+		if (oldModelClassName.equals(
+					"com.jkamcc.musicbrainz.model.impl.ArtistMetaImpl")) {
+			return translateOutputArtistMeta(oldModel);
 		}
 		else if (oldModelClassName.endsWith("Clp")) {
 			try {
@@ -269,6 +321,10 @@ public class ClpSerializer {
 			return new com.jkamcc.musicbrainz.NoSuchArtistException();
 		}
 
+		if (className.equals("com.jkamcc.musicbrainz.NoSuchArtistMetaException")) {
+			return new com.jkamcc.musicbrainz.NoSuchArtistMetaException();
+		}
+
 		return throwable;
 	}
 
@@ -278,6 +334,16 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setArtistRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputArtistMeta(BaseModel<?> oldModel) {
+		ArtistMetaClp newModel = new ArtistMetaClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setArtistMetaRemoteModel(oldModel);
 
 		return newModel;
 	}

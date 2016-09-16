@@ -24,6 +24,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
@@ -54,10 +58,11 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 	 */
 	public static final String TABLE_NAME = "artist";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "id", Types.INTEGER },
+			{ "id", Types.BIGINT },
+			{ "gid", Types.VARCHAR },
 			{ "name", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table artist (id INTEGER not null primary key,name VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table artist (id LONG not null primary key,gid VARCHAR(75) null,name VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table artist";
 	public static final String ORDER_BY_JPQL = " ORDER BY artist.id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY artist.id ASC";
@@ -78,12 +83,12 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 	}
 
 	@Override
-	public Integer getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _id;
 	}
 
 	@Override
-	public void setPrimaryKey(Integer primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		setId(primaryKey);
 	}
 
@@ -94,7 +99,7 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Integer)primaryKeyObj).intValue());
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
@@ -112,6 +117,7 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("id", getId());
+		attributes.put("gid", getGid());
 		attributes.put("name", getName());
 
 		return attributes;
@@ -119,10 +125,16 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Integer id = (Integer)attributes.get("id");
+		Long id = (Long)attributes.get("id");
 
 		if (id != null) {
 			setId(id);
+		}
+
+		String gid = (String)attributes.get("gid");
+
+		if (gid != null) {
+			setGid(gid);
 		}
 
 		String name = (String)attributes.get("name");
@@ -133,13 +145,28 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 	}
 
 	@Override
-	public Integer getId() {
+	public long getId() {
 		return _id;
 	}
 
 	@Override
-	public void setId(Integer id) {
+	public void setId(long id) {
 		_id = id;
+	}
+
+	@Override
+	public String getGid() {
+		if (_gid == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _gid;
+		}
+	}
+
+	@Override
+	public void setGid(String gid) {
+		_gid = gid;
 	}
 
 	@Override
@@ -158,6 +185,19 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 	}
 
 	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			Artist.class.getName(), getPrimaryKey());
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
 	public Artist toEscapedModel() {
 		if (_escapedModel == null) {
 			_escapedModel = (Artist)ProxyUtil.newProxyInstance(_classLoader,
@@ -172,6 +212,7 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 		ArtistImpl artistImpl = new ArtistImpl();
 
 		artistImpl.setId(getId());
+		artistImpl.setGid(getGid());
 		artistImpl.setName(getName());
 
 		artistImpl.resetOriginalValues();
@@ -181,7 +222,7 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 
 	@Override
 	public int compareTo(Artist artist) {
-		Integer primaryKey = artist.getPrimaryKey();
+		long primaryKey = artist.getPrimaryKey();
 
 		if (getPrimaryKey() < primaryKey) {
 			return -1;
@@ -206,7 +247,7 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 
 		Artist artist = (Artist)obj;
 
-		Integer primaryKey = artist.getPrimaryKey();
+		long primaryKey = artist.getPrimaryKey();
 
 		if (getPrimaryKey() == primaryKey) {
 			return true;
@@ -218,7 +259,7 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
@@ -230,6 +271,14 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 		ArtistCacheModel artistCacheModel = new ArtistCacheModel();
 
 		artistCacheModel.id = getId();
+
+		artistCacheModel.gid = getGid();
+
+		String gid = artistCacheModel.gid;
+
+		if ((gid != null) && (gid.length() == 0)) {
+			artistCacheModel.gid = null;
+		}
 
 		artistCacheModel.name = getName();
 
@@ -244,10 +293,12 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(7);
 
 		sb.append("{id=");
 		sb.append(getId());
+		sb.append(", gid=");
+		sb.append(getGid());
 		sb.append(", name=");
 		sb.append(getName());
 		sb.append("}");
@@ -257,7 +308,7 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(10);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("<model><model-name>");
 		sb.append("com.jkamcc.musicbrainz.model.Artist");
@@ -266,6 +317,10 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 		sb.append(
 			"<column><column-name>id</column-name><column-value><![CDATA[");
 		sb.append(getId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>gid</column-name><column-value><![CDATA[");
+		sb.append(getGid());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
@@ -279,7 +334,8 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 
 	private static ClassLoader _classLoader = Artist.class.getClassLoader();
 	private static Class<?>[] _escapedModelInterfaces = new Class[] { Artist.class };
-	private Integer _id;
+	private long _id;
+	private String _gid;
 	private String _name;
 	private Artist _escapedModel;
 }

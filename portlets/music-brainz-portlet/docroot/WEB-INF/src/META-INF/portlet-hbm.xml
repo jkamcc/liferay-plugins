@@ -3,11 +3,21 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.jkamcc.musicbrainz.model.Artist" />
+	<import class="com.jkamcc.musicbrainz.model.ArtistMeta" />
 	<class name="com.jkamcc.musicbrainz.model.impl.ArtistImpl" table="artist">
 		<cache usage="read-write" />
-		<id name="id" type="Integer">
+		<id name="id" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="gid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.jkamcc.musicbrainz.model.impl.ArtistMetaImpl" table="artist_meta">
+		<cache usage="read-write" />
+		<id name="id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="rating" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="ratingCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="rating_count" />
 	</class>
 </hibernate-mapping>

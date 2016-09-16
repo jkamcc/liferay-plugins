@@ -16,6 +16,7 @@ package com.jkamcc.musicbrainz.service.base;
 
 import com.jkamcc.musicbrainz.model.Artist;
 import com.jkamcc.musicbrainz.service.ArtistLocalService;
+import com.jkamcc.musicbrainz.service.persistence.ArtistMetaPersistence;
 import com.jkamcc.musicbrainz.service.persistence.ArtistPersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -83,7 +84,7 @@ public abstract class ArtistLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the new artist
 	 */
 	@Override
-	public Artist createArtist(Integer id) {
+	public Artist createArtist(long id) {
 		return artistPersistence.create(id);
 	}
 
@@ -97,8 +98,7 @@ public abstract class ArtistLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Artist deleteArtist(Integer id)
-		throws PortalException, SystemException {
+	public Artist deleteArtist(long id) throws PortalException, SystemException {
 		return artistPersistence.remove(id);
 	}
 
@@ -207,7 +207,7 @@ public abstract class ArtistLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@Override
-	public Artist fetchArtist(Integer id) throws SystemException {
+	public Artist fetchArtist(long id) throws SystemException {
 		return artistPersistence.fetchByPrimaryKey(id);
 	}
 
@@ -220,7 +220,7 @@ public abstract class ArtistLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Artist getArtist(Integer id) throws PortalException, SystemException {
+	public Artist getArtist(long id) throws PortalException, SystemException {
 		return artistPersistence.findByPrimaryKey(id);
 	}
 
@@ -307,6 +307,44 @@ public abstract class ArtistLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	public void setArtistPersistence(ArtistPersistence artistPersistence) {
 		this.artistPersistence = artistPersistence;
+	}
+
+	/**
+	 * Returns the artist meta local service.
+	 *
+	 * @return the artist meta local service
+	 */
+	public com.jkamcc.musicbrainz.service.ArtistMetaLocalService getArtistMetaLocalService() {
+		return artistMetaLocalService;
+	}
+
+	/**
+	 * Sets the artist meta local service.
+	 *
+	 * @param artistMetaLocalService the artist meta local service
+	 */
+	public void setArtistMetaLocalService(
+		com.jkamcc.musicbrainz.service.ArtistMetaLocalService artistMetaLocalService) {
+		this.artistMetaLocalService = artistMetaLocalService;
+	}
+
+	/**
+	 * Returns the artist meta persistence.
+	 *
+	 * @return the artist meta persistence
+	 */
+	public ArtistMetaPersistence getArtistMetaPersistence() {
+		return artistMetaPersistence;
+	}
+
+	/**
+	 * Sets the artist meta persistence.
+	 *
+	 * @param artistMetaPersistence the artist meta persistence
+	 */
+	public void setArtistMetaPersistence(
+		ArtistMetaPersistence artistMetaPersistence) {
+		this.artistMetaPersistence = artistMetaPersistence;
 	}
 
 	/**
@@ -489,6 +527,10 @@ public abstract class ArtistLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.jkamcc.musicbrainz.service.ArtistLocalService artistLocalService;
 	@BeanReference(type = ArtistPersistence.class)
 	protected ArtistPersistence artistPersistence;
+	@BeanReference(type = com.jkamcc.musicbrainz.service.ArtistMetaLocalService.class)
+	protected com.jkamcc.musicbrainz.service.ArtistMetaLocalService artistMetaLocalService;
+	@BeanReference(type = ArtistMetaPersistence.class)
+	protected ArtistMetaPersistence artistMetaPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)

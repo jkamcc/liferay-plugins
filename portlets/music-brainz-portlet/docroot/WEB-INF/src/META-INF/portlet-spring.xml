@@ -6,4 +6,9 @@
 		<property name="dataSource" ref="musicBrainzDataSource" />
 		<property name="sessionFactory" ref="musicBrainzSessionFactory" />
 	</bean>
+	<bean id="com.jkamcc.musicbrainz.service.ArtistMetaLocalService" class="com.jkamcc.musicbrainz.service.impl.ArtistMetaLocalServiceImpl" />
+	<bean id="com.jkamcc.musicbrainz.service.persistence.ArtistMetaPersistence" class="com.jkamcc.musicbrainz.service.persistence.ArtistMetaPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="musicBrainzDataSource" />
+		<property name="sessionFactory" ref="musicBrainzSessionFactory" />
+	</bean>
 </beans>

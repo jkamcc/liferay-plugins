@@ -171,7 +171,7 @@ public class ArtistPersistenceImpl extends BasePersistenceImpl<Artist>
 	 * @return the new artist
 	 */
 	@Override
-	public Artist create(Integer id) {
+	public Artist create(long id) {
 		Artist artist = new ArtistImpl();
 
 		artist.setNew(true);
@@ -189,8 +189,7 @@ public class ArtistPersistenceImpl extends BasePersistenceImpl<Artist>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Artist remove(Integer id)
-		throws NoSuchArtistException, SystemException {
+	public Artist remove(long id) throws NoSuchArtistException, SystemException {
 		return remove((Serializable)id);
 	}
 
@@ -317,6 +316,7 @@ public class ArtistPersistenceImpl extends BasePersistenceImpl<Artist>
 		artistImpl.setPrimaryKey(artist.getPrimaryKey());
 
 		artistImpl.setId(artist.getId());
+		artistImpl.setGid(artist.getGid());
 		artistImpl.setName(artist.getName());
 
 		return artistImpl;
@@ -356,7 +356,7 @@ public class ArtistPersistenceImpl extends BasePersistenceImpl<Artist>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Artist findByPrimaryKey(Integer id)
+	public Artist findByPrimaryKey(long id)
 		throws NoSuchArtistException, SystemException {
 		return findByPrimaryKey((Serializable)id);
 	}
@@ -416,7 +416,7 @@ public class ArtistPersistenceImpl extends BasePersistenceImpl<Artist>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Artist fetchByPrimaryKey(Integer id) throws SystemException {
+	public Artist fetchByPrimaryKey(long id) throws SystemException {
 		return fetchByPrimaryKey((Serializable)id);
 	}
 

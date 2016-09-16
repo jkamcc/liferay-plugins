@@ -58,7 +58,7 @@ public interface ArtistPersistence extends BasePersistence<Artist> {
 	* @param id the primary key for the new artist
 	* @return the new artist
 	*/
-	public com.jkamcc.musicbrainz.model.Artist create(java.lang.Integer id);
+	public com.jkamcc.musicbrainz.model.Artist create(long id);
 
 	/**
 	* Removes the artist with the primary key from the database. Also notifies the appropriate model listeners.
@@ -68,7 +68,7 @@ public interface ArtistPersistence extends BasePersistence<Artist> {
 	* @throws com.jkamcc.musicbrainz.NoSuchArtistException if a artist with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.jkamcc.musicbrainz.model.Artist remove(java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist remove(long id)
 		throws com.jkamcc.musicbrainz.NoSuchArtistException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -84,8 +84,7 @@ public interface ArtistPersistence extends BasePersistence<Artist> {
 	* @throws com.jkamcc.musicbrainz.NoSuchArtistException if a artist with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.jkamcc.musicbrainz.model.Artist findByPrimaryKey(
-		java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist findByPrimaryKey(long id)
 		throws com.jkamcc.musicbrainz.NoSuchArtistException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -96,8 +95,7 @@ public interface ArtistPersistence extends BasePersistence<Artist> {
 	* @return the artist, or <code>null</code> if a artist with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.jkamcc.musicbrainz.model.Artist fetchByPrimaryKey(
-		java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist fetchByPrimaryKey(long id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

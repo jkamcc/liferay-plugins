@@ -58,8 +58,7 @@ public class ArtistLocalServiceUtil {
 	* @param id the primary key for the new artist
 	* @return the new artist
 	*/
-	public static com.jkamcc.musicbrainz.model.Artist createArtist(
-		java.lang.Integer id) {
+	public static com.jkamcc.musicbrainz.model.Artist createArtist(long id) {
 		return getService().createArtist(id);
 	}
 
@@ -71,8 +70,7 @@ public class ArtistLocalServiceUtil {
 	* @throws PortalException if a artist with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.jkamcc.musicbrainz.model.Artist deleteArtist(
-		java.lang.Integer id)
+	public static com.jkamcc.musicbrainz.model.Artist deleteArtist(long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteArtist(id);
@@ -181,8 +179,7 @@ public class ArtistLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.jkamcc.musicbrainz.model.Artist fetchArtist(
-		java.lang.Integer id)
+	public static com.jkamcc.musicbrainz.model.Artist fetchArtist(long id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchArtist(id);
 	}
@@ -195,8 +192,7 @@ public class ArtistLocalServiceUtil {
 	* @throws PortalException if a artist with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.jkamcc.musicbrainz.model.Artist getArtist(
-		java.lang.Integer id)
+	public static com.jkamcc.musicbrainz.model.Artist getArtist(long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getArtist(id);

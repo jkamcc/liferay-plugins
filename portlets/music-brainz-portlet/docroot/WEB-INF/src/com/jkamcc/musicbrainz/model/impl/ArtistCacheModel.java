@@ -35,10 +35,12 @@ import java.io.ObjectOutput;
 public class ArtistCacheModel implements CacheModel<Artist>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(7);
 
 		sb.append("{id=");
 		sb.append(id);
+		sb.append(", gid=");
+		sb.append(gid);
 		sb.append(", name=");
 		sb.append(name);
 		sb.append("}");
@@ -51,6 +53,13 @@ public class ArtistCacheModel implements CacheModel<Artist>, Externalizable {
 		ArtistImpl artistImpl = new ArtistImpl();
 
 		artistImpl.setId(id);
+
+		if (gid == null) {
+			artistImpl.setGid(StringPool.BLANK);
+		}
+		else {
+			artistImpl.setGid(gid);
+		}
 
 		if (name == null) {
 			artistImpl.setName(StringPool.BLANK);
@@ -66,14 +75,22 @@ public class ArtistCacheModel implements CacheModel<Artist>, Externalizable {
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		id = objectInput.readInteger();
+		id = objectInput.readLong();
+		gid = objectInput.readUTF();
 		name = objectInput.readUTF();
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeInteger(id);
+		objectOutput.writeLong(id);
+
+		if (gid == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(gid);
+		}
 
 		if (name == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -83,6 +100,7 @@ public class ArtistCacheModel implements CacheModel<Artist>, Externalizable {
 		}
 	}
 
-	public Integer id;
+	public long id;
+	public String gid;
 	public String name;
 }

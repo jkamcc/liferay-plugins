@@ -50,8 +50,7 @@ public class ArtistLocalServiceWrapper implements ArtistLocalService,
 	* @return the new artist
 	*/
 	@Override
-	public com.jkamcc.musicbrainz.model.Artist createArtist(
-		java.lang.Integer id) {
+	public com.jkamcc.musicbrainz.model.Artist createArtist(long id) {
 		return _artistLocalService.createArtist(id);
 	}
 
@@ -64,8 +63,7 @@ public class ArtistLocalServiceWrapper implements ArtistLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public com.jkamcc.musicbrainz.model.Artist deleteArtist(
-		java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist deleteArtist(long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _artistLocalService.deleteArtist(id);
@@ -182,7 +180,7 @@ public class ArtistLocalServiceWrapper implements ArtistLocalService,
 	}
 
 	@Override
-	public com.jkamcc.musicbrainz.model.Artist fetchArtist(java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist fetchArtist(long id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _artistLocalService.fetchArtist(id);
 	}
@@ -196,7 +194,7 @@ public class ArtistLocalServiceWrapper implements ArtistLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public com.jkamcc.musicbrainz.model.Artist getArtist(java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist getArtist(long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _artistLocalService.getArtist(id);

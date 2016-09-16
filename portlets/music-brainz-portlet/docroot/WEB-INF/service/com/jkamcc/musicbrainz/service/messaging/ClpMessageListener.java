@@ -15,6 +15,7 @@
 package com.jkamcc.musicbrainz.service.messaging;
 
 import com.jkamcc.musicbrainz.service.ArtistLocalServiceUtil;
+import com.jkamcc.musicbrainz.service.ArtistMetaLocalServiceUtil;
 import com.jkamcc.musicbrainz.service.ClpSerializer;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
@@ -36,6 +37,8 @@ public class ClpMessageListener extends BaseMessageListener {
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
 			ArtistLocalServiceUtil.clearService();
+
+			ArtistMetaLocalServiceUtil.clearService();
 		}
 	}
 }

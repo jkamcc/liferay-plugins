@@ -48,28 +48,43 @@ public interface ArtistModel extends BaseModel<Artist> {
 	 *
 	 * @return the primary key of this artist
 	 */
-	public Integer getPrimaryKey();
+	public long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this artist.
 	 *
 	 * @param primaryKey the primary key of this artist
 	 */
-	public void setPrimaryKey(Integer primaryKey);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the ID of this artist.
 	 *
 	 * @return the ID of this artist
 	 */
-	public Integer getId();
+	public long getId();
 
 	/**
 	 * Sets the ID of this artist.
 	 *
 	 * @param id the ID of this artist
 	 */
-	public void setId(Integer id);
+	public void setId(long id);
+
+	/**
+	 * Returns the gid of this artist.
+	 *
+	 * @return the gid of this artist
+	 */
+	@AutoEscape
+	public String getGid();
+
+	/**
+	 * Sets the gid of this artist.
+	 *
+	 * @param gid the gid of this artist
+	 */
+	public void setGid(String gid);
 
 	/**
 	 * Returns the name of this artist.

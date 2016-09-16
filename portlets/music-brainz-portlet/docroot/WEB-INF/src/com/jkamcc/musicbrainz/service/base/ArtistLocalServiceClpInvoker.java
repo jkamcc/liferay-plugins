@@ -32,11 +32,11 @@ public class ArtistLocalServiceClpInvoker {
 
 		_methodName1 = "createArtist";
 
-		_methodParameterTypes1 = new String[] { "java.lang.Integer" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteArtist";
 
-		_methodParameterTypes2 = new String[] { "java.lang.Integer" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteArtist";
 
@@ -82,11 +82,11 @@ public class ArtistLocalServiceClpInvoker {
 
 		_methodName10 = "fetchArtist";
 
-		_methodParameterTypes10 = new String[] { "java.lang.Integer" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getArtist";
 
-		_methodParameterTypes11 = new String[] { "java.lang.Integer" };
+		_methodParameterTypes11 = new String[] { "long" };
 
 		_methodName12 = "getPersistedModel";
 
@@ -106,13 +106,13 @@ public class ArtistLocalServiceClpInvoker {
 				"com.jkamcc.musicbrainz.model.Artist"
 			};
 
-		_methodName32 = "getBeanIdentifier";
+		_methodName36 = "getBeanIdentifier";
 
-		_methodParameterTypes32 = new String[] {  };
+		_methodParameterTypes36 = new String[] {  };
 
-		_methodName33 = "setBeanIdentifier";
+		_methodName37 = "setBeanIdentifier";
 
-		_methodParameterTypes33 = new String[] { "java.lang.String" };
+		_methodParameterTypes37 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -124,12 +124,12 @@ public class ArtistLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return ArtistLocalServiceUtil.createArtist((java.lang.Integer)arguments[0]);
+			return ArtistLocalServiceUtil.createArtist(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return ArtistLocalServiceUtil.deleteArtist((java.lang.Integer)arguments[0]);
+			return ArtistLocalServiceUtil.deleteArtist(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
@@ -175,12 +175,12 @@ public class ArtistLocalServiceClpInvoker {
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return ArtistLocalServiceUtil.fetchArtist((java.lang.Integer)arguments[0]);
+			return ArtistLocalServiceUtil.fetchArtist(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return ArtistLocalServiceUtil.getArtist((java.lang.Integer)arguments[0]);
+			return ArtistLocalServiceUtil.getArtist(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
@@ -204,13 +204,13 @@ public class ArtistLocalServiceClpInvoker {
 			return ArtistLocalServiceUtil.updateArtist((com.jkamcc.musicbrainz.model.Artist)arguments[0]);
 		}
 
-		if (_methodName32.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
+		if (_methodName36.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
 			return ArtistLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			ArtistLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -251,8 +251,8 @@ public class ArtistLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName32;
-	private String[] _methodParameterTypes32;
-	private String _methodName33;
-	private String[] _methodParameterTypes33;
+	private String _methodName36;
+	private String[] _methodParameterTypes36;
+	private String _methodName37;
+	private String[] _methodParameterTypes37;
 }

@@ -49,12 +49,12 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 	}
 
 	@Override
-	public Integer getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _id;
 	}
 
 	@Override
-	public void setPrimaryKey(Integer primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		setId(primaryKey);
 	}
 
@@ -65,7 +65,7 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Integer)primaryKeyObj).intValue());
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
@@ -73,6 +73,7 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("id", getId());
+		attributes.put("gid", getGid());
 		attributes.put("name", getName());
 
 		return attributes;
@@ -80,10 +81,16 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Integer id = (Integer)attributes.get("id");
+		Long id = (Long)attributes.get("id");
 
 		if (id != null) {
 			setId(id);
+		}
+
+		String gid = (String)attributes.get("gid");
+
+		if (gid != null) {
+			setGid(gid);
 		}
 
 		String name = (String)attributes.get("name");
@@ -94,21 +101,44 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 	}
 
 	@Override
-	public Integer getId() {
+	public long getId() {
 		return _id;
 	}
 
 	@Override
-	public void setId(Integer id) {
+	public void setId(long id) {
 		_id = id;
 
 		if (_artistRemoteModel != null) {
 			try {
 				Class<?> clazz = _artistRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setId", Integer.class);
+				Method method = clazz.getMethod("setId", long.class);
 
 				method.invoke(_artistRemoteModel, id);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getGid() {
+		return _gid;
+	}
+
+	@Override
+	public void setGid(String gid) {
+		_gid = gid;
+
+		if (_artistRemoteModel != null) {
+			try {
+				Class<?> clazz = _artistRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGid", String.class);
+
+				method.invoke(_artistRemoteModel, gid);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -136,6 +166,44 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
 			}
+		}
+	}
+
+	@Override
+	public int getRatings() {
+		try {
+			String methodName = "getRatings";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Integer returnObj = (Integer)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public int getRatingsCount() {
+		try {
+			String methodName = "getRatingsCount";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Integer returnObj = (Integer)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
 		}
 	}
 
@@ -209,6 +277,7 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 		ArtistClp clone = new ArtistClp();
 
 		clone.setId(getId());
+		clone.setGid(getGid());
 		clone.setName(getName());
 
 		return clone;
@@ -216,7 +285,7 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 
 	@Override
 	public int compareTo(Artist artist) {
-		Integer primaryKey = artist.getPrimaryKey();
+		long primaryKey = artist.getPrimaryKey();
 
 		if (getPrimaryKey() < primaryKey) {
 			return -1;
@@ -241,7 +310,7 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 
 		ArtistClp artist = (ArtistClp)obj;
 
-		Integer primaryKey = artist.getPrimaryKey();
+		long primaryKey = artist.getPrimaryKey();
 
 		if (getPrimaryKey() == primaryKey) {
 			return true;
@@ -257,15 +326,17 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(7);
 
 		sb.append("{id=");
 		sb.append(getId());
+		sb.append(", gid=");
+		sb.append(getGid());
 		sb.append(", name=");
 		sb.append(getName());
 		sb.append("}");
@@ -275,7 +346,7 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(10);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("<model><model-name>");
 		sb.append("com.jkamcc.musicbrainz.model.Artist");
@@ -284,6 +355,10 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 		sb.append(
 			"<column><column-name>id</column-name><column-value><![CDATA[");
 		sb.append(getId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>gid</column-name><column-value><![CDATA[");
+		sb.append(getGid());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
@@ -295,7 +370,8 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 		return sb.toString();
 	}
 
-	private Integer _id;
+	private long _id;
+	private String _gid;
 	private String _name;
 	private BaseModel<?> _artistRemoteModel;
 	private Class<?> _clpSerializerClass = com.jkamcc.musicbrainz.service.ClpSerializer.class;

@@ -10,7 +10,20 @@
 	<mapped-superclass class="com.jkamcc.musicbrainz.model.impl.ArtistModelImpl">
 		<attributes>
 			<id name="id" />
+			<basic name="gid" />
 			<basic name="name" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.jkamcc.musicbrainz.model.impl.ArtistMetaModelImpl">
+		<attributes>
+			<id name="id" />
+			<basic name="rating" />
+			<basic name="ratingCount">
+				<column name="RATING_COUNT" />
+			</basic>
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -18,6 +31,10 @@
 	</mapped-superclass>
 	<entity class="com.jkamcc.musicbrainz.model.impl.ArtistImpl" name="Artist">
 		<table name="artist" />
+		<attributes />
+	</entity>
+	<entity class="com.jkamcc.musicbrainz.model.impl.ArtistMetaImpl" name="ArtistMeta">
+		<table name="artist_meta" />
 		<attributes />
 	</entity>
 </entity-mappings>

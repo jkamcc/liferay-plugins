@@ -64,8 +64,7 @@ public interface ArtistLocalService extends BaseLocalService,
 	* @param id the primary key for the new artist
 	* @return the new artist
 	*/
-	public com.jkamcc.musicbrainz.model.Artist createArtist(
-		java.lang.Integer id);
+	public com.jkamcc.musicbrainz.model.Artist createArtist(long id);
 
 	/**
 	* Deletes the artist with the primary key from the database. Also notifies the appropriate model listeners.
@@ -76,8 +75,7 @@ public interface ArtistLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.jkamcc.musicbrainz.model.Artist deleteArtist(
-		java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist deleteArtist(long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -171,7 +169,7 @@ public interface ArtistLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.jkamcc.musicbrainz.model.Artist fetchArtist(java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist fetchArtist(long id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -183,7 +181,7 @@ public interface ArtistLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.jkamcc.musicbrainz.model.Artist getArtist(java.lang.Integer id)
+	public com.jkamcc.musicbrainz.model.Artist getArtist(long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

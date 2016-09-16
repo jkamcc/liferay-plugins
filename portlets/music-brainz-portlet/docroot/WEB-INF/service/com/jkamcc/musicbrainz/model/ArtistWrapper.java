@@ -49,6 +49,7 @@ public class ArtistWrapper implements Artist, ModelWrapper<Artist> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("id", getId());
+		attributes.put("gid", getGid());
 		attributes.put("name", getName());
 
 		return attributes;
@@ -56,10 +57,16 @@ public class ArtistWrapper implements Artist, ModelWrapper<Artist> {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Integer id = (Integer)attributes.get("id");
+		Long id = (Long)attributes.get("id");
 
 		if (id != null) {
 			setId(id);
+		}
+
+		String gid = (String)attributes.get("gid");
+
+		if (gid != null) {
+			setGid(gid);
 		}
 
 		String name = (String)attributes.get("name");
@@ -75,7 +82,7 @@ public class ArtistWrapper implements Artist, ModelWrapper<Artist> {
 	* @return the primary key of this artist
 	*/
 	@Override
-	public java.lang.Integer getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _artist.getPrimaryKey();
 	}
 
@@ -85,7 +92,7 @@ public class ArtistWrapper implements Artist, ModelWrapper<Artist> {
 	* @param primaryKey the primary key of this artist
 	*/
 	@Override
-	public void setPrimaryKey(java.lang.Integer primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		_artist.setPrimaryKey(primaryKey);
 	}
 
@@ -95,7 +102,7 @@ public class ArtistWrapper implements Artist, ModelWrapper<Artist> {
 	* @return the ID of this artist
 	*/
 	@Override
-	public java.lang.Integer getId() {
+	public long getId() {
 		return _artist.getId();
 	}
 
@@ -105,8 +112,28 @@ public class ArtistWrapper implements Artist, ModelWrapper<Artist> {
 	* @param id the ID of this artist
 	*/
 	@Override
-	public void setId(java.lang.Integer id) {
+	public void setId(long id) {
 		_artist.setId(id);
+	}
+
+	/**
+	* Returns the gid of this artist.
+	*
+	* @return the gid of this artist
+	*/
+	@Override
+	public java.lang.String getGid() {
+		return _artist.getGid();
+	}
+
+	/**
+	* Sets the gid of this artist.
+	*
+	* @param gid the gid of this artist
+	*/
+	@Override
+	public void setGid(java.lang.String gid) {
+		_artist.setGid(gid);
 	}
 
 	/**
@@ -231,6 +258,16 @@ public class ArtistWrapper implements Artist, ModelWrapper<Artist> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_artist.persist();
+	}
+
+	@Override
+	public int getRatings() {
+		return _artist.getRatings();
+	}
+
+	@Override
+	public int getRatingsCount() {
+		return _artist.getRatingsCount();
 	}
 
 	@Override

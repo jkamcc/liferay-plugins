@@ -14,6 +14,14 @@
 
 package com.jkamcc.musicbrainz.model.impl;
 
+import com.jkamcc.musicbrainz.model.ArtistMeta;
+import com.jkamcc.musicbrainz.service.ArtistMetaLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.Validator;
+
 /**
  * The extended model implementation for the Artist service. Represents a row in the &quot;artist&quot; database table, with each column mapped to a property of this class.
  *
@@ -31,4 +39,48 @@ public class ArtistImpl extends ArtistBaseImpl {
 	 */
 	public ArtistImpl() {
 	}
+
+	public int getRatings() {
+		long id = getId();
+
+		if (Validator.isNull(id)) {
+			return 0;
+		}
+
+		int ratings = 0;
+
+		try {
+			ArtistMeta artistMeta = ArtistMetaLocalServiceUtil.getArtistMeta(getId());
+			ratings = artistMeta.getRating();
+		} catch (PortalException e) {
+			_log.error(e);
+		} catch (SystemException e) {
+			_log.error(e);
+		}
+
+		return ratings;
+	}
+
+	public int getRatingsCount() {
+		long id = getId();
+
+		if (Validator.isNull(id)) {
+			return 0;
+		}
+
+		int ratingsCount = 0;
+
+		try {
+			ArtistMeta artistMeta = ArtistMetaLocalServiceUtil.getArtistMeta(getId());
+			ratingsCount = artistMeta.getRatingCount();
+		} catch (PortalException e) {
+			_log.error(e);
+		} catch (SystemException e) {
+			_log.error(e);
+		}
+
+		return ratingsCount;
+	}
+
+	Log _log = LogFactoryUtil.getLog(ArtistImpl.class);
 }

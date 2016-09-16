@@ -2,7 +2,13 @@
 
 <model-hints>
 	<model name="com.jkamcc.musicbrainz.model.Artist">
-		<field name="id" type="Integer" />
+		<field name="id" type="long" />
+		<field name="gid" type="String" />
 		<field name="name" type="String" />
+	</model>
+	<model name="com.jkamcc.musicbrainz.model.ArtistMeta">
+		<field name="id" type="long" />
+		<field name="rating" type="int" />
+		<field name="ratingCount" type="int" />
 	</model>
 </model-hints>

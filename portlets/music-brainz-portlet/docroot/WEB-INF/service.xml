@@ -9,12 +9,30 @@
             data-source="musicBrainzDataSource" tx-manager="musicBrainzTransactionManager" session-factory="musicBrainzSessionFactory">
 
         <!-- PK fields -->
-        <column name="id" type="Integer" db-name="id" primary="true"/>
+        <column name="id" type="long" db-name="id" primary="true"/>
+
+        <!-- Resource -->
+
+        <column name="resourcePrimKey" type="long" filter-primary="true" />
 
         <!-- Other fields -->
+        <column name="gid" type="String" db-name="gid" />
         <column name="name" type="String" db-name="name" />
 
     </entity>
+
+    <entity name="ArtistMeta" table="artist_meta" local-service="true" remote-service="false"
+            data-source="musicBrainzDataSource" tx-manager="musicBrainzTransactionManager" session-factory="musicBrainzSessionFactory">
+
+        <!-- PK fields -->
+        <column name="id" type="long" db-name="id" primary="true"/>
+
+        <!-- Other fields -->
+        <column name="rating" type="int" db-name="rating" />
+        <column name="ratingCount" type="int" db-name="rating_count" />
+
+    </entity>
+
 
     <exceptions>
     </exceptions>
