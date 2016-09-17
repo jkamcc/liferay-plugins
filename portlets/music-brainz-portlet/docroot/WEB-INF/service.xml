@@ -13,12 +13,19 @@
 
         <!-- Resource -->
 
-        <column name="resourcePrimKey" type="long" filter-primary="true" />
+        <column name="resourcePrimKey" type="long" db-name="_resourceprimkey"/>
 
         <!-- Other fields -->
         <column name="gid" type="String" db-name="gid" />
         <column name="name" type="String" db-name="name" />
+        <column name="sortName" type="String" db-name="sort_name" />
+        <column name="beginDateYear" type="int" db-name="begin_date_year" />
+        <column name="endDateYear" type="int" db-name="end_date_year" />
+        <column name="type" type="int" db-name="type" />
+        <column name="area" type="int" db-name="area" />
+        <column name="gender" type="int" db-name="gender" />
 
+        <reference package-path="com.liferay.portlet.asset" entity="AssetEntry"/>
     </entity>
 
     <entity name="ArtistMeta" table="artist_meta" local-service="true" remote-service="false"
@@ -32,7 +39,6 @@
         <column name="ratingCount" type="int" db-name="rating_count" />
 
     </entity>
-
 
     <exceptions>
     </exceptions>

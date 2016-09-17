@@ -9,8 +9,15 @@
 		<id name="id" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="resourcePrimKey" type="com.liferay.portal.dao.orm.hibernate.LongType" column="_resourceprimkey" />
 		<property name="gid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="sortName" type="com.liferay.portal.dao.orm.hibernate.StringType" column="sort_name" />
+		<property name="beginDateYear" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="begin_date_year" />
+		<property name="endDateYear" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="end_date_year" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="area" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="gender" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.jkamcc.musicbrainz.model.impl.ArtistMetaImpl" table="artist_meta">
 		<cache usage="read-write" />

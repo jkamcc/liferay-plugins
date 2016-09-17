@@ -40,6 +40,7 @@ public class ArtistImpl extends ArtistBaseImpl {
 	public ArtistImpl() {
 	}
 
+	/*
 	public int getRatings() {
 		long id = getId();
 
@@ -81,6 +82,7 @@ public class ArtistImpl extends ArtistBaseImpl {
 
 		return ratingsCount;
 	}
+	*/
 
 	Log _log = LogFactoryUtil.getLog(ArtistImpl.class);
 }

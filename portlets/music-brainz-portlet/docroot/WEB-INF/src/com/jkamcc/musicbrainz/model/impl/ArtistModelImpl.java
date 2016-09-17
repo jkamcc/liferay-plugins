@@ -59,10 +59,17 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 	public static final String TABLE_NAME = "artist";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "id", Types.BIGINT },
+			{ "_resourceprimkey", Types.BIGINT },
 			{ "gid", Types.VARCHAR },
-			{ "name", Types.VARCHAR }
+			{ "name", Types.VARCHAR },
+			{ "sort_name", Types.VARCHAR },
+			{ "begin_date_year", Types.INTEGER },
+			{ "end_date_year", Types.INTEGER },
+			{ "type", Types.INTEGER },
+			{ "area", Types.INTEGER },
+			{ "gender", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table artist (id LONG not null primary key,gid VARCHAR(75) null,name VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table artist (id LONG not null primary key,_resourceprimkey LONG,gid VARCHAR(75) null,name VARCHAR(75) null,sort_name VARCHAR(75) null,begin_date_year INTEGER,end_date_year INTEGER,type INTEGER,area INTEGER,gender INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table artist";
 	public static final String ORDER_BY_JPQL = " ORDER BY artist.id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY artist.id ASC";
@@ -117,8 +124,15 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("id", getId());
+		attributes.put("resourcePrimKey", getResourcePrimKey());
 		attributes.put("gid", getGid());
 		attributes.put("name", getName());
+		attributes.put("sortName", getSortName());
+		attributes.put("beginDateYear", getBeginDateYear());
+		attributes.put("endDateYear", getEndDateYear());
+		attributes.put("type", getType());
+		attributes.put("area", getArea());
+		attributes.put("gender", getGender());
 
 		return attributes;
 	}
@@ -129,6 +143,12 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 
 		if (id != null) {
 			setId(id);
+		}
+
+		Long resourcePrimKey = (Long)attributes.get("resourcePrimKey");
+
+		if (resourcePrimKey != null) {
+			setResourcePrimKey(resourcePrimKey);
 		}
 
 		String gid = (String)attributes.get("gid");
@@ -142,6 +162,42 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 		if (name != null) {
 			setName(name);
 		}
+
+		String sortName = (String)attributes.get("sortName");
+
+		if (sortName != null) {
+			setSortName(sortName);
+		}
+
+		Integer beginDateYear = (Integer)attributes.get("beginDateYear");
+
+		if (beginDateYear != null) {
+			setBeginDateYear(beginDateYear);
+		}
+
+		Integer endDateYear = (Integer)attributes.get("endDateYear");
+
+		if (endDateYear != null) {
+			setEndDateYear(endDateYear);
+		}
+
+		Integer type = (Integer)attributes.get("type");
+
+		if (type != null) {
+			setType(type);
+		}
+
+		Integer area = (Integer)attributes.get("area");
+
+		if (area != null) {
+			setArea(area);
+		}
+
+		Integer gender = (Integer)attributes.get("gender");
+
+		if (gender != null) {
+			setGender(gender);
+		}
 	}
 
 	@Override
@@ -152,6 +208,21 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 	@Override
 	public void setId(long id) {
 		_id = id;
+	}
+
+	@Override
+	public long getResourcePrimKey() {
+		return _resourcePrimKey;
+	}
+
+	@Override
+	public void setResourcePrimKey(long resourcePrimKey) {
+		_resourcePrimKey = resourcePrimKey;
+	}
+
+	@Override
+	public boolean isResourceMain() {
+		return true;
 	}
 
 	@Override
@@ -185,6 +256,71 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 	}
 
 	@Override
+	public String getSortName() {
+		if (_sortName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _sortName;
+		}
+	}
+
+	@Override
+	public void setSortName(String sortName) {
+		_sortName = sortName;
+	}
+
+	@Override
+	public int getBeginDateYear() {
+		return _beginDateYear;
+	}
+
+	@Override
+	public void setBeginDateYear(int beginDateYear) {
+		_beginDateYear = beginDateYear;
+	}
+
+	@Override
+	public int getEndDateYear() {
+		return _endDateYear;
+	}
+
+	@Override
+	public void setEndDateYear(int endDateYear) {
+		_endDateYear = endDateYear;
+	}
+
+	@Override
+	public int getType() {
+		return _type;
+	}
+
+	@Override
+	public void setType(int type) {
+		_type = type;
+	}
+
+	@Override
+	public int getArea() {
+		return _area;
+	}
+
+	@Override
+	public void setArea(int area) {
+		_area = area;
+	}
+
+	@Override
+	public int getGender() {
+		return _gender;
+	}
+
+	@Override
+	public void setGender(int gender) {
+		_gender = gender;
+	}
+
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
 			Artist.class.getName(), getPrimaryKey());
@@ -212,8 +348,15 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 		ArtistImpl artistImpl = new ArtistImpl();
 
 		artistImpl.setId(getId());
+		artistImpl.setResourcePrimKey(getResourcePrimKey());
 		artistImpl.setGid(getGid());
 		artistImpl.setName(getName());
+		artistImpl.setSortName(getSortName());
+		artistImpl.setBeginDateYear(getBeginDateYear());
+		artistImpl.setEndDateYear(getEndDateYear());
+		artistImpl.setType(getType());
+		artistImpl.setArea(getArea());
+		artistImpl.setGender(getGender());
 
 		artistImpl.resetOriginalValues();
 
@@ -272,6 +415,8 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 
 		artistCacheModel.id = getId();
 
+		artistCacheModel.resourcePrimKey = getResourcePrimKey();
+
 		artistCacheModel.gid = getGid();
 
 		String gid = artistCacheModel.gid;
@@ -288,19 +433,51 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 			artistCacheModel.name = null;
 		}
 
+		artistCacheModel.sortName = getSortName();
+
+		String sortName = artistCacheModel.sortName;
+
+		if ((sortName != null) && (sortName.length() == 0)) {
+			artistCacheModel.sortName = null;
+		}
+
+		artistCacheModel.beginDateYear = getBeginDateYear();
+
+		artistCacheModel.endDateYear = getEndDateYear();
+
+		artistCacheModel.type = getType();
+
+		artistCacheModel.area = getArea();
+
+		artistCacheModel.gender = getGender();
+
 		return artistCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{id=");
 		sb.append(getId());
+		sb.append(", resourcePrimKey=");
+		sb.append(getResourcePrimKey());
 		sb.append(", gid=");
 		sb.append(getGid());
 		sb.append(", name=");
 		sb.append(getName());
+		sb.append(", sortName=");
+		sb.append(getSortName());
+		sb.append(", beginDateYear=");
+		sb.append(getBeginDateYear());
+		sb.append(", endDateYear=");
+		sb.append(getEndDateYear());
+		sb.append(", type=");
+		sb.append(getType());
+		sb.append(", area=");
+		sb.append(getArea());
+		sb.append(", gender=");
+		sb.append(getGender());
 		sb.append("}");
 
 		return sb.toString();
@@ -308,7 +485,7 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.jkamcc.musicbrainz.model.Artist");
@@ -319,12 +496,40 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 		sb.append(getId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>resourcePrimKey</column-name><column-value><![CDATA[");
+		sb.append(getResourcePrimKey());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>gid</column-name><column-value><![CDATA[");
 		sb.append(getGid());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
 		sb.append(getName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>sortName</column-name><column-value><![CDATA[");
+		sb.append(getSortName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>beginDateYear</column-name><column-value><![CDATA[");
+		sb.append(getBeginDateYear());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>endDateYear</column-name><column-value><![CDATA[");
+		sb.append(getEndDateYear());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>type</column-name><column-value><![CDATA[");
+		sb.append(getType());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>area</column-name><column-value><![CDATA[");
+		sb.append(getArea());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>gender</column-name><column-value><![CDATA[");
+		sb.append(getGender());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -335,7 +540,14 @@ public class ArtistModelImpl extends BaseModelImpl<Artist>
 	private static ClassLoader _classLoader = Artist.class.getClassLoader();
 	private static Class<?>[] _escapedModelInterfaces = new Class[] { Artist.class };
 	private long _id;
+	private long _resourcePrimKey;
 	private String _gid;
 	private String _name;
+	private String _sortName;
+	private int _beginDateYear;
+	private int _endDateYear;
+	private int _type;
+	private int _area;
+	private int _gender;
 	private Artist _escapedModel;
 }

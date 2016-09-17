@@ -30,8 +30,15 @@ public class ArtistSoap implements Serializable {
 		ArtistSoap soapModel = new ArtistSoap();
 
 		soapModel.setId(model.getId());
+		soapModel.setResourcePrimKey(model.getResourcePrimKey());
 		soapModel.setGid(model.getGid());
 		soapModel.setName(model.getName());
+		soapModel.setSortName(model.getSortName());
+		soapModel.setBeginDateYear(model.getBeginDateYear());
+		soapModel.setEndDateYear(model.getEndDateYear());
+		soapModel.setType(model.getType());
+		soapModel.setArea(model.getArea());
+		soapModel.setGender(model.getGender());
 
 		return soapModel;
 	}
@@ -92,6 +99,14 @@ public class ArtistSoap implements Serializable {
 		_id = id;
 	}
 
+	public long getResourcePrimKey() {
+		return _resourcePrimKey;
+	}
+
+	public void setResourcePrimKey(long resourcePrimKey) {
+		_resourcePrimKey = resourcePrimKey;
+	}
+
 	public String getGid() {
 		return _gid;
 	}
@@ -108,7 +123,62 @@ public class ArtistSoap implements Serializable {
 		_name = name;
 	}
 
+	public String getSortName() {
+		return _sortName;
+	}
+
+	public void setSortName(String sortName) {
+		_sortName = sortName;
+	}
+
+	public int getBeginDateYear() {
+		return _beginDateYear;
+	}
+
+	public void setBeginDateYear(int beginDateYear) {
+		_beginDateYear = beginDateYear;
+	}
+
+	public int getEndDateYear() {
+		return _endDateYear;
+	}
+
+	public void setEndDateYear(int endDateYear) {
+		_endDateYear = endDateYear;
+	}
+
+	public int getType() {
+		return _type;
+	}
+
+	public void setType(int type) {
+		_type = type;
+	}
+
+	public int getArea() {
+		return _area;
+	}
+
+	public void setArea(int area) {
+		_area = area;
+	}
+
+	public int getGender() {
+		return _gender;
+	}
+
+	public void setGender(int gender) {
+		_gender = gender;
+	}
+
 	private long _id;
+	private long _resourcePrimKey;
 	private String _gid;
 	private String _name;
+	private String _sortName;
+	private int _beginDateYear;
+	private int _endDateYear;
+	private int _type;
+	private int _area;
+	private int _gender;
 }

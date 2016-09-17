@@ -31,7 +31,4 @@ public interface Artist extends ArtistModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.jkamcc.musicbrainz.model.impl.ArtistImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public int getRatings();
-
-	public int getRatingsCount();
 }

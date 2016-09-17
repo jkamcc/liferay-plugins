@@ -10,8 +10,23 @@
 	<mapped-superclass class="com.jkamcc.musicbrainz.model.impl.ArtistModelImpl">
 		<attributes>
 			<id name="id" />
+			<basic name="resourcePrimKey">
+				<column name="_RESOURCEPRIMKEY" />
+			</basic>
 			<basic name="gid" />
 			<basic name="name" />
+			<basic name="sortName">
+				<column name="SORT_NAME" />
+			</basic>
+			<basic name="beginDateYear">
+				<column name="BEGIN_DATE_YEAR" />
+			</basic>
+			<basic name="endDateYear">
+				<column name="END_DATE_YEAR" />
+			</basic>
+			<basic name="type" />
+			<basic name="area" />
+			<basic name="gender" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

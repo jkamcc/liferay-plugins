@@ -17,6 +17,7 @@ package com.jkamcc.musicbrainz.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.model.ResourcedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -36,7 +37,7 @@ import java.io.Serializable;
  * @see com.jkamcc.musicbrainz.model.impl.ArtistModelImpl
  * @generated
  */
-public interface ArtistModel extends BaseModel<Artist> {
+public interface ArtistModel extends BaseModel<Artist>, ResourcedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -72,6 +73,25 @@ public interface ArtistModel extends BaseModel<Artist> {
 	public void setId(long id);
 
 	/**
+	 * Returns the resource prim key of this artist.
+	 *
+	 * @return the resource prim key of this artist
+	 */
+	@Override
+	public long getResourcePrimKey();
+
+	/**
+	 * Sets the resource prim key of this artist.
+	 *
+	 * @param resourcePrimKey the resource prim key of this artist
+	 */
+	@Override
+	public void setResourcePrimKey(long resourcePrimKey);
+
+	@Override
+	public boolean isResourceMain();
+
+	/**
 	 * Returns the gid of this artist.
 	 *
 	 * @return the gid of this artist
@@ -100,6 +120,91 @@ public interface ArtistModel extends BaseModel<Artist> {
 	 * @param name the name of this artist
 	 */
 	public void setName(String name);
+
+	/**
+	 * Returns the sort name of this artist.
+	 *
+	 * @return the sort name of this artist
+	 */
+	@AutoEscape
+	public String getSortName();
+
+	/**
+	 * Sets the sort name of this artist.
+	 *
+	 * @param sortName the sort name of this artist
+	 */
+	public void setSortName(String sortName);
+
+	/**
+	 * Returns the begin date year of this artist.
+	 *
+	 * @return the begin date year of this artist
+	 */
+	public int getBeginDateYear();
+
+	/**
+	 * Sets the begin date year of this artist.
+	 *
+	 * @param beginDateYear the begin date year of this artist
+	 */
+	public void setBeginDateYear(int beginDateYear);
+
+	/**
+	 * Returns the end date year of this artist.
+	 *
+	 * @return the end date year of this artist
+	 */
+	public int getEndDateYear();
+
+	/**
+	 * Sets the end date year of this artist.
+	 *
+	 * @param endDateYear the end date year of this artist
+	 */
+	public void setEndDateYear(int endDateYear);
+
+	/**
+	 * Returns the type of this artist.
+	 *
+	 * @return the type of this artist
+	 */
+	public int getType();
+
+	/**
+	 * Sets the type of this artist.
+	 *
+	 * @param type the type of this artist
+	 */
+	public void setType(int type);
+
+	/**
+	 * Returns the area of this artist.
+	 *
+	 * @return the area of this artist
+	 */
+	public int getArea();
+
+	/**
+	 * Sets the area of this artist.
+	 *
+	 * @param area the area of this artist
+	 */
+	public void setArea(int area);
+
+	/**
+	 * Returns the gender of this artist.
+	 *
+	 * @return the gender of this artist
+	 */
+	public int getGender();
+
+	/**
+	 * Sets the gender of this artist.
+	 *
+	 * @param gender the gender of this artist
+	 */
+	public void setGender(int gender);
 
 	@Override
 	public boolean isNew();

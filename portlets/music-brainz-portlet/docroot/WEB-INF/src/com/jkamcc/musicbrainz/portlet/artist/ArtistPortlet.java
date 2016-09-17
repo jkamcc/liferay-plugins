@@ -1,4 +1,4 @@
-package com.jkamcc.musicbrainz.portlet;
+package com.jkamcc.musicbrainz.portlet.artist;
 
 import com.jkamcc.musicbrainz.model.Artist;
 import com.jkamcc.musicbrainz.service.ArtistLocalServiceUtil;
@@ -22,7 +22,7 @@ public class ArtistPortlet extends MVCPortlet {
         try {
             Artist artist = ArtistLocalServiceUtil.getArtist(1l) ;
             System.out.println("artist = " + artist);
-            System.out.println("artist = " + artist.getRatings());
+            //System.out.println("artist = " + artist.getRatings());
         } catch (PortalException e) {
             e.printStackTrace();
         } catch (SystemException e) {

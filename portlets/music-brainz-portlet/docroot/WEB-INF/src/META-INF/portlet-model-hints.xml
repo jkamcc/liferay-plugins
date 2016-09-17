@@ -3,8 +3,15 @@
 <model-hints>
 	<model name="com.jkamcc.musicbrainz.model.Artist">
 		<field name="id" type="long" />
+		<field name="resourcePrimKey" type="long" />
 		<field name="gid" type="String" />
 		<field name="name" type="String" />
+		<field name="sortName" type="String" />
+		<field name="beginDateYear" type="int" />
+		<field name="endDateYear" type="int" />
+		<field name="type" type="int" />
+		<field name="area" type="int" />
+		<field name="gender" type="int" />
 	</model>
 	<model name="com.jkamcc.musicbrainz.model.ArtistMeta">
 		<field name="id" type="long" />

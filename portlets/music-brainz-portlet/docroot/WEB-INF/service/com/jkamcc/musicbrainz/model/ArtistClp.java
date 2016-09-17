@@ -73,8 +73,15 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("id", getId());
+		attributes.put("resourcePrimKey", getResourcePrimKey());
 		attributes.put("gid", getGid());
 		attributes.put("name", getName());
+		attributes.put("sortName", getSortName());
+		attributes.put("beginDateYear", getBeginDateYear());
+		attributes.put("endDateYear", getEndDateYear());
+		attributes.put("type", getType());
+		attributes.put("area", getArea());
+		attributes.put("gender", getGender());
 
 		return attributes;
 	}
@@ -87,6 +94,12 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 			setId(id);
 		}
 
+		Long resourcePrimKey = (Long)attributes.get("resourcePrimKey");
+
+		if (resourcePrimKey != null) {
+			setResourcePrimKey(resourcePrimKey);
+		}
+
 		String gid = (String)attributes.get("gid");
 
 		if (gid != null) {
@@ -97,6 +110,42 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 
 		if (name != null) {
 			setName(name);
+		}
+
+		String sortName = (String)attributes.get("sortName");
+
+		if (sortName != null) {
+			setSortName(sortName);
+		}
+
+		Integer beginDateYear = (Integer)attributes.get("beginDateYear");
+
+		if (beginDateYear != null) {
+			setBeginDateYear(beginDateYear);
+		}
+
+		Integer endDateYear = (Integer)attributes.get("endDateYear");
+
+		if (endDateYear != null) {
+			setEndDateYear(endDateYear);
+		}
+
+		Integer type = (Integer)attributes.get("type");
+
+		if (type != null) {
+			setType(type);
+		}
+
+		Integer area = (Integer)attributes.get("area");
+
+		if (area != null) {
+			setArea(area);
+		}
+
+		Integer gender = (Integer)attributes.get("gender");
+
+		if (gender != null) {
+			setGender(gender);
 		}
 	}
 
@@ -121,6 +170,38 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 				throw new UnsupportedOperationException(e);
 			}
 		}
+	}
+
+	@Override
+	public long getResourcePrimKey() {
+		return _resourcePrimKey;
+	}
+
+	@Override
+	public void setResourcePrimKey(long resourcePrimKey) {
+		_resourcePrimKey = resourcePrimKey;
+
+		if (_artistRemoteModel != null) {
+			try {
+				Class<?> clazz = _artistRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setResourcePrimKey", long.class);
+
+				method.invoke(_artistRemoteModel, resourcePrimKey);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public boolean isResourceMain() {
+		return _resourceMain;
+	}
+
+	public void setResourceMain(boolean resourceMain) {
+		_resourceMain = resourceMain;
 	}
 
 	@Override
@@ -170,40 +251,140 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 	}
 
 	@Override
-	public int getRatings() {
-		try {
-			String methodName = "getRatings";
+	public String getSortName() {
+		return _sortName;
+	}
 
-			Class<?>[] parameterTypes = new Class<?>[] {  };
+	@Override
+	public void setSortName(String sortName) {
+		_sortName = sortName;
 
-			Object[] parameterValues = new Object[] {  };
+		if (_artistRemoteModel != null) {
+			try {
+				Class<?> clazz = _artistRemoteModel.getClass();
 
-			Integer returnObj = (Integer)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
+				Method method = clazz.getMethod("setSortName", String.class);
 
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
+				method.invoke(_artistRemoteModel, sortName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
 		}
 	}
 
 	@Override
-	public int getRatingsCount() {
-		try {
-			String methodName = "getRatingsCount";
+	public int getBeginDateYear() {
+		return _beginDateYear;
+	}
 
-			Class<?>[] parameterTypes = new Class<?>[] {  };
+	@Override
+	public void setBeginDateYear(int beginDateYear) {
+		_beginDateYear = beginDateYear;
 
-			Object[] parameterValues = new Object[] {  };
+		if (_artistRemoteModel != null) {
+			try {
+				Class<?> clazz = _artistRemoteModel.getClass();
 
-			Integer returnObj = (Integer)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
+				Method method = clazz.getMethod("setBeginDateYear", int.class);
 
-			return returnObj;
+				method.invoke(_artistRemoteModel, beginDateYear);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
 		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
+	}
+
+	@Override
+	public int getEndDateYear() {
+		return _endDateYear;
+	}
+
+	@Override
+	public void setEndDateYear(int endDateYear) {
+		_endDateYear = endDateYear;
+
+		if (_artistRemoteModel != null) {
+			try {
+				Class<?> clazz = _artistRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setEndDateYear", int.class);
+
+				method.invoke(_artistRemoteModel, endDateYear);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getType() {
+		return _type;
+	}
+
+	@Override
+	public void setType(int type) {
+		_type = type;
+
+		if (_artistRemoteModel != null) {
+			try {
+				Class<?> clazz = _artistRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setType", int.class);
+
+				method.invoke(_artistRemoteModel, type);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getArea() {
+		return _area;
+	}
+
+	@Override
+	public void setArea(int area) {
+		_area = area;
+
+		if (_artistRemoteModel != null) {
+			try {
+				Class<?> clazz = _artistRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setArea", int.class);
+
+				method.invoke(_artistRemoteModel, area);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getGender() {
+		return _gender;
+	}
+
+	@Override
+	public void setGender(int gender) {
+		_gender = gender;
+
+		if (_artistRemoteModel != null) {
+			try {
+				Class<?> clazz = _artistRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGender", int.class);
+
+				method.invoke(_artistRemoteModel, gender);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
 		}
 	}
 
@@ -277,8 +458,15 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 		ArtistClp clone = new ArtistClp();
 
 		clone.setId(getId());
+		clone.setResourcePrimKey(getResourcePrimKey());
 		clone.setGid(getGid());
 		clone.setName(getName());
+		clone.setSortName(getSortName());
+		clone.setBeginDateYear(getBeginDateYear());
+		clone.setEndDateYear(getEndDateYear());
+		clone.setType(getType());
+		clone.setArea(getArea());
+		clone.setGender(getGender());
 
 		return clone;
 	}
@@ -331,14 +519,28 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{id=");
 		sb.append(getId());
+		sb.append(", resourcePrimKey=");
+		sb.append(getResourcePrimKey());
 		sb.append(", gid=");
 		sb.append(getGid());
 		sb.append(", name=");
 		sb.append(getName());
+		sb.append(", sortName=");
+		sb.append(getSortName());
+		sb.append(", beginDateYear=");
+		sb.append(getBeginDateYear());
+		sb.append(", endDateYear=");
+		sb.append(getEndDateYear());
+		sb.append(", type=");
+		sb.append(getType());
+		sb.append(", area=");
+		sb.append(getArea());
+		sb.append(", gender=");
+		sb.append(getGender());
 		sb.append("}");
 
 		return sb.toString();
@@ -346,7 +548,7 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.jkamcc.musicbrainz.model.Artist");
@@ -357,12 +559,40 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 		sb.append(getId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>resourcePrimKey</column-name><column-value><![CDATA[");
+		sb.append(getResourcePrimKey());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>gid</column-name><column-value><![CDATA[");
 		sb.append(getGid());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
 		sb.append(getName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>sortName</column-name><column-value><![CDATA[");
+		sb.append(getSortName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>beginDateYear</column-name><column-value><![CDATA[");
+		sb.append(getBeginDateYear());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>endDateYear</column-name><column-value><![CDATA[");
+		sb.append(getEndDateYear());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>type</column-name><column-value><![CDATA[");
+		sb.append(getType());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>area</column-name><column-value><![CDATA[");
+		sb.append(getArea());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>gender</column-name><column-value><![CDATA[");
+		sb.append(getGender());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -371,8 +601,16 @@ public class ArtistClp extends BaseModelImpl<Artist> implements Artist {
 	}
 
 	private long _id;
+	private long _resourcePrimKey;
+	private boolean _resourceMain;
 	private String _gid;
 	private String _name;
+	private String _sortName;
+	private int _beginDateYear;
+	private int _endDateYear;
+	private int _type;
+	private int _area;
+	private int _gender;
 	private BaseModel<?> _artistRemoteModel;
 	private Class<?> _clpSerializerClass = com.jkamcc.musicbrainz.service.ClpSerializer.class;
 }

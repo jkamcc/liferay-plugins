@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>music-brainz</portlet-name>
 		<display-name>Music Brainz</display-name>
-		<portlet-class>com.jkamcc.musicbrainz.portlet.ArtistPortlet</portlet-class>
+		<portlet-class>com.jkamcc.musicbrainz.portlet.artist.ArtistPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
 			<value>/view.jsp</value>

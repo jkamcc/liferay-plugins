@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
@@ -46,6 +47,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The persistence implementation for the artist service.
@@ -316,8 +318,15 @@ public class ArtistPersistenceImpl extends BasePersistenceImpl<Artist>
 		artistImpl.setPrimaryKey(artist.getPrimaryKey());
 
 		artistImpl.setId(artist.getId());
+		artistImpl.setResourcePrimKey(artist.getResourcePrimKey());
 		artistImpl.setGid(artist.getGid());
 		artistImpl.setName(artist.getName());
+		artistImpl.setSortName(artist.getSortName());
+		artistImpl.setBeginDateYear(artist.getBeginDateYear());
+		artistImpl.setEndDateYear(artist.getEndDateYear());
+		artistImpl.setType(artist.getType());
+		artistImpl.setArea(artist.getArea());
+		artistImpl.setGender(artist.getGender());
 
 		return artistImpl;
 	}
@@ -592,6 +601,11 @@ public class ArtistPersistenceImpl extends BasePersistenceImpl<Artist>
 		return count.intValue();
 	}
 
+	@Override
+	protected Set<String> getBadColumnNames() {
+		return _badColumnNames;
+	}
+
 	/**
 	 * Initializes the artist persistence.
 	 */
@@ -631,6 +645,9 @@ public class ArtistPersistenceImpl extends BasePersistenceImpl<Artist>
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(ArtistPersistenceImpl.class);
+	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+				"resourcePrimKey", "sortName", "beginDateYear", "endDateYear"
+			});
 	private static Artist _nullArtist = new ArtistImpl() {
 			@Override
 			public Object clone() {
