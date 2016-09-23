@@ -5,6 +5,7 @@
 	<portlet>
 		<portlet-name>music-brainz</portlet-name>
 		<icon>/icon.png</icon>
+		<indexer-class>com.jkamcc.musicbrainz.portlet.artist.search.ArtistIndexer</indexer-class>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>music-brainz-portlet</css-class-wrapper>

@@ -19,6 +19,17 @@ import com.jkamcc.musicbrainz.model.ArtistMeta;
 import com.jkamcc.musicbrainz.service.base.ArtistLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portlet.asset.model.AssetEntry;
+
+import java.util.Date;
 
 /**
  * The implementation of the artist local service.
@@ -40,5 +51,17 @@ public class ArtistLocalServiceImpl extends ArtistLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link com.jkamcc.musicbrainz.service.ArtistLocalServiceUtil} to access the artist local service.
 	 */
+
+	public void updateAsset(Artist artist) throws SystemException, PortalException {
+        Company company = CompanyLocalServiceUtil.getCompanyByMx(PropsUtil.get(PropsKeys.COMPANY_DEFAULT_WEB_ID));
+	    User user = company.getDefaultUser();
+        Date currentDate = new Date();
+
+        AssetEntry assetEntry = assetEntryLocalService.updateEntry(user.getUserId(), user.getGroupId(),
+                currentDate, currentDate, Artist.class.getName(), artist.getId(), artist.getGid(), 0, null, null,
+                true, null, null, null, ContentTypes.TEXT_HTML, artist.getName(), "description", "summary", null, null,
+                0, 0, null, false);
+
+    }
 
 }
