@@ -2,7 +2,8 @@
 <!DOCTYPE display PUBLIC "-//Liferay//DTD Display 6.2.0//EN" "http://www.liferay.com/dtd/liferay-display_6_2_0.dtd">
 
 <display>
-	<category name="category.sample">
+	<category name="category.music.recommender">
 		<portlet id="music-brainz" />
+		<portlet id="last-fm-user-importer" />
 	</category>
 </display>

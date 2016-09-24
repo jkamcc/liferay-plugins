@@ -31,4 +31,34 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+	<portlet>
+		<portlet-name>last-fm-user-importer</portlet-name>
+		<display-name>Last FM User Importer</display-name>
+		<portlet-class>com.jkamcc.lastfm.portlet.user.UserImporterPortlet</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/html/user-importer/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Last FM User Importer</title>
+			<short-title>Last FM User Importer</short-title>
+			<keywords>Last FM User Importer</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
 </portlet-app>
